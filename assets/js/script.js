@@ -14,7 +14,7 @@ timeblockArray = document.querySelectorAll(".time-block");
 var checkHour = function() {
     for (i = 0; i < timeblockArray.length; i++) {
         var hour = i + 9; 
-        console.log(hour);
+        console.log(timeblockArray[1]);
     
     // remove any old classes from element
     $(".description").removeClass("past present future");
@@ -33,3 +33,6 @@ var checkHour = function() {
 }; 
 
 checkHour();
+
+//then use setInterval to call checkHour function every few minutes to update
+
