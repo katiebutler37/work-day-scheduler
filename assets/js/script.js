@@ -4,17 +4,21 @@ var currentDay = moment().format("dddd, MMMM Do YYYY");
 $("#currentDay").html(currentDay);
 
 //current hour in 24 hr time format
-var currentHour = moment().format("H");
+//var currentHour = moment().format("H");
+var currentHour = "12";
 console.log(currentHour);
 
-var timeblockArray = [];
-timeblockArray = document.querySelectorAll(".time-block");
-//console.log(timeblockArray[3]);
+// var timeblockArray = [];
+// document.querySelectorAll(".time-block").(timeblockArray);
 
-var checkHour = function() {
-    for (i = 0; i < timeblockArray.length; i++) {
-        var hour = i + 9; 
-        console.log(timeblockArray[1]);
+var checkHour = function(timeEl) {
+    // for (i = 0; i < timeblockArray.length; i++) {
+        // var hour = i + 9;
+    
+         // get date from task element
+  var hour = $(timeEl).find("span").text().trim();
+  // ensure it worked
+  console.log(hour); 
     
     // remove any old classes from element
     $(".description").removeClass("past present future");
@@ -29,9 +33,7 @@ var checkHour = function() {
         else if (hour > currentHour) {
             $(".description").addClass("past");
         };
-    }; 
-}; 
-
+    };     
 checkHour();
 
 //then use setInterval to call checkHour function every few minutes to update
