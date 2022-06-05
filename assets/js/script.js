@@ -8,12 +8,13 @@ var currentHour = moment().format("H");
 console.log(currentHour);
 
 var timeblockArray = [];
-timeblockArray = document.querySelectorAll(".hour");
-console.log(timeblockArray);
+timeblockArray = document.querySelectorAll(".time-block");
+//console.log(timeblockArray[3]);
 
 var checkHour = function() {
     for (i = 0; i < timeblockArray.length; i++) {
         var hour = i + 9; 
+        console.log(hour);
     
     // remove any old classes from element
     $(".description").removeClass("past present future");
