@@ -7,28 +7,14 @@ $("#currentDay").html(currentDay);
 var currentHour = moment().format("H");
 console.log(currentHour);
 
-$(".24hr").each(function(){
-    var hour = $(this).text();
-    console.log(hour[0]);
-});
-
-// $(".time-block").each(function(hour) {
-//     hour = $(".24hr").text();
-//     $(".description").removeClass("past present future");
-
-//     // apply new class if task is near/over due date
-//     if (hour < currentHour) {
-//         $(".description").addClass("future");
-//     }
-//     else if (hour == currentHour) {
-//         $(".description").addClass("present");
-//   }
-//     else if (hour > currentHour) {
-//         $(".description").addClass("past");
-//     } 
-// });
+var timeblockArray = [];
+timeblockArray = document.querySelectorAll(".hour");
+console.log(timeblockArray);
 
 var checkHour = function() {
+    for (i = 0; i < timeblockArray.length; i++) {
+        var hour = i + 9; 
+    
     // remove any old classes from element
     $(".description").removeClass("past present future");
 
@@ -42,6 +28,7 @@ var checkHour = function() {
         else if (hour > currentHour) {
             $(".description").addClass("past");
         };
+    }; 
 }; 
 
 checkHour();
