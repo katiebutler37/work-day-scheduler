@@ -7,6 +7,8 @@ $("#currentDay").html(currentDay);
 var currentHour = moment().format("H");
 console.log(currentHour);
 
+//var tasks = {};
+
 var timeblockNodeList = $(".time-block");
 
 var checkHour = function() {
@@ -28,8 +30,12 @@ var checkHour = function() {
     var loadTasks = function() {
         tasks = JSON.parse(localStorage.getItem("tasks"));
         if (!tasks) {
-            tasks = [];
-        };
+            tasks = [
+                {
+                    task,
+                    time 
+                }
+        ]};
         console.log(tasks);
     }    
 
@@ -55,8 +61,13 @@ setInterval(function () {
 var taskNodeList = $("textarea");
 
 $(".time-block").on("click", ".saveBtn", function() {
-    var task = $(this).find(".description").val();
+    var task = $(this).parent().find(".description").val().trim();
+    var time = $(this).closest(".time-block").attr("id");
+    //$(task).attr("id", );
+    console.log(time);
     console.log(task);
+    tasks.push(task, time);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 });
 
 
