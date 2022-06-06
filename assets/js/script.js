@@ -30,38 +30,35 @@ var checkHour = function() {
     };   
 
     var loadTasks = function() {
-    //     var timeblockId = $(".time-block").attr("id");
-    //     console.log(timeblockId);
-    JSON.parse(localStorage.getItem(time, task));
-     if (time == $(".time-block".id)) {
-         $("textarea").append(task);
-     }
 
-    }
-     //console.log(tasks);
-    //     if (!tasks) {
-    //         tasks = [];
-    //     }
-    //     $.each(tasks, function() {
-    //         if (taskObj.savedTime == timeblockId) {
-    //             $(".description").append(taskObj.savedTask)
-    //         }
-    //     })
-    // }
-        // else if (tasks[taskObj].time) {
-        // console.log(tasks);
-        // };   
+        var task9 = (localStorage.getItem(9));
+        var task10 = (localStorage.getItem(10));
+        var task11 = (localStorage.getItem(11));
+        var task12 = (localStorage.getItem(12));
+        var task13 = (localStorage.getItem(13));
+        var task14 = (localStorage.getItem(14));
+        var task15 = (localStorage.getItem(15));
+        var task16 = (localStorage.getItem(16));
+        var task17 = (localStorage.getItem(17));
+    
+        $("#nine").val(task9)
+        $("#ten").val(task10)
+        $("#eleven").val(task11)
+        $("#twelve").val(task12)
+        $("#thirteen").val(task13)
+        $("#fourteen").val(task14)
+        $("#fifteen").val(task15)
+        $("#sixteen").val(task16)
+        $("#seventeen").val(task17)
+    
+        }
 
-    // var saveTask = function(event) {
-    //     var taskEl = $(timeEl).find("textarea").text().trim();
-    //     localStorage.setItem("tasks", JSON.stringify(tasks));
-    // }
+        loadTasks();
 
 for (i = 0; i < timeblockNodeList.length; i++) {
     var hour = i + 9;
     var timeEl = timeblockNodeList[i];
     checkHour();
-    loadTasks();
     console.log(hour); 
 }
 
@@ -71,47 +68,9 @@ setInterval(function () {
       console.log("check");
   }, (1000 * 60) * 3);
 
-  //select all textareas
-//var taskNodeList = $("textarea");
-
 $(".time-block").on("click", ".saveBtn", function() {
     var task = $(this).parent().find(".description").val().trim();
     var time = $(this).closest(".time-block").attr("id");
-    //tasks.push(taskObj);
     localStorage.setItem(time, task);
 });
-
-
-//       for (i = 0; i < taskNodeList.length; i++) {
-//           var taskEl = timeblockNodeList[i]; 
-//           console.log(taskEl);
-//     localStorage.setItem("task", JSON.stringify(taskEl));
-// }
-// }
-
-//saveTasks();
-
-
-//   var loadTasks = function() {
-//     tasks = JSON.parse(localStorage.getItem("tasks"));
-  
-//     // if nothing in localStorage, create a new object to track all task status arrays
-//     if (!tasks) {
-//       tasks = [];
-//       };
-//     }
-  
-//     // loop over object properties
-//     $.each(tasks, function(list, arr) {
-//       // then loop over sub-array
-//       arr.forEach(function(task) {
-//         createTask(task.text, task.date, list);
-//       });
-//     });
-  
-//   var saveTasks = function() {
-//     localStorage.setItem("tasks", JSON.stringify(tasks));
-//   };
-
-
 
