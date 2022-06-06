@@ -37,4 +37,38 @@ var checkHour = function(timeEl) {
 checkHour();
 
 //then use setInterval to call checkHour function every few minutes to update
+setInterval(function () {
+    //$(".card .list-group-item").each(function(index, el) {
+      checkHour();
+  }, (1000 * 60) * 5);
+
+
+//   var loadTasks = function() {
+//     tasks = JSON.parse(localStorage.getItem("tasks"));
+  
+//     // if nothing in localStorage, create a new object to track all task status arrays
+//     if (!tasks) {
+//       tasks = [];
+//       };
+//     }
+  
+//     // loop over object properties
+//     $.each(tasks, function(list, arr) {
+//       // then loop over sub-array
+//       arr.forEach(function(task) {
+//         createTask(task.text, task.date, list);
+//       });
+//     });
+  
+//   var saveTasks = function() {
+//     localStorage.setItem("tasks", JSON.stringify(tasks));
+//   };
+
+$(".description").on("click", "p", function() {
+    var textInput = $("<textarea>")
+    .addClass("form-control")
+    .val(text);
+    $(this).replaceWith(textInput);
+    textInput.trigger("focus");
+  });
 
