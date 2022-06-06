@@ -8,8 +8,7 @@ var currentHour = moment().format("H");
 console.log(currentHour);
 
 var timeEl;
-
-var timeblockNodeList = document.querySelectorAll(".time-block");
+var timeblockNodeList = $(".time-block");
 
 var checkHour = function() {
     for (i = 0; i < timeblockNodeList.length; i++) {
@@ -41,7 +40,22 @@ checkHour();
 setInterval(function () {
       checkHour();
       console.log("check");
-  }, (1000 * 60) * 5);
+  }, (1000 * 60) * 3);
+
+var taskNodeList = $("textarea");
+
+  var saveTasks = function() {
+      $(timeEl).find("textarea").text().trim();
+      console.log();
+  }
+//       for (i = 0; i < taskNodeList.length; i++) {
+//           var taskEl = timeblockNodeList[i]; 
+//           console.log(taskEl);
+//     localStorage.setItem("task", JSON.stringify(taskEl));
+// }
+// }
+
+saveTasks();
 
 
 //   var loadTasks = function() {
