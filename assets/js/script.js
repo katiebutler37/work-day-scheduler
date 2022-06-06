@@ -4,42 +4,43 @@ var currentDay = moment().format("dddd, MMMM Do YYYY");
 $("#currentDay").html(currentDay);
 
 //current hour in 24 hr time format
-//var currentHour = moment().format("H");
-var currentHour = "12";
+var currentHour = moment().format("H");
 console.log(currentHour);
 
-// var timeblockArray = [];
-// document.querySelectorAll(".time-block").(timeblockArray);
+var timeEl;
 
-var checkHour = function(timeEl) {
-    // for (i = 0; i < timeblockArray.length; i++) {
-        // var hour = i + 9;
-    
+var timeblockNodeList = document.querySelectorAll(".time-block");
+
+var checkHour = function() {
+    for (i = 0; i < timeblockNodeList.length; i++) {
+        var hour = i + 9;
+        var timeEl = timeblockNodeList[i];
+       
          // get date from task element
-  var hour = $(timeEl).find("span").text().trim();
   // ensure it worked
   console.log(hour); 
     
     // remove any old classes from element
-    $(".description").removeClass("past present future");
+    $(timeEl).find("textarea").removeClass("past present future");
 
         // apply new class if task is near/over due date
-        if (hour < currentHour) {
-            $(".description").addClass("future");
+        if (hour > currentHour) {
+            $(timeEl).find("textarea").addClass("future");
         }
         else if (hour == currentHour) {
-            $(".description").addClass("present");
+            $(timeEl).find("textarea").addClass("present");
         }
-        else if (hour > currentHour) {
-            $(".description").addClass("past");
+        else if (hour < currentHour) {
+            $(timeEl).find("textarea").addClass("past");
         };
-    };     
+    };   
+};  
 checkHour();
 
 //then use setInterval to call checkHour function every few minutes to update
 setInterval(function () {
-    //$(".card .list-group-item").each(function(index, el) {
       checkHour();
+      console.log("check");
   }, (1000 * 60) * 5);
 
 
@@ -64,11 +65,5 @@ setInterval(function () {
 //     localStorage.setItem("tasks", JSON.stringify(tasks));
 //   };
 
-$(".description").on("click", "p", function() {
-    var textInput = $("<textarea>")
-    .addClass("form-control")
-    .val(text);
-    $(this).replaceWith(textInput);
-    textInput.trigger("focus");
-  });
+
 
