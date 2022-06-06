@@ -7,18 +7,9 @@ $("#currentDay").html(currentDay);
 var currentHour = moment().format("H");
 console.log(currentHour);
 
-var timeEl;
 var timeblockNodeList = $(".time-block");
 
 var checkHour = function() {
-    for (i = 0; i < timeblockNodeList.length; i++) {
-        var hour = i + 9;
-        var timeEl = timeblockNodeList[i];
-       
-         // get date from task element
-  // ensure it worked
-  console.log(hour); 
-    
     // remove any old classes from element
     $(timeEl).find("textarea").removeClass("past present future");
 
@@ -33,8 +24,27 @@ var checkHour = function() {
             $(timeEl).find("textarea").addClass("past");
         };
     };   
-};  
-checkHour();
+
+    var loadTasks = function() {
+        tasks = JSON.parse(localStorage.getItem("tasks"));
+        if (!tasks) {
+            tasks = [];
+        };
+        console.log(tasks);
+    }    
+
+    // var saveTask = function(event) {
+    //     var taskEl = $(timeEl).find("textarea").text().trim();
+    //     localStorage.setItem("tasks", JSON.stringify(tasks));
+    // }
+
+for (i = 0; i < timeblockNodeList.length; i++) {
+    var hour = i + 9;
+    var timeEl = timeblockNodeList[i];
+    checkHour();
+    loadTasks();
+    console.log(hour); 
+}
 
 //then use setInterval to call checkHour function every few minutes to update
 setInterval(function () {
@@ -44,10 +54,12 @@ setInterval(function () {
 
 var taskNodeList = $("textarea");
 
-  var saveTasks = function() {
-      $(timeEl).find("textarea").text().trim();
-      console.log();
-  }
+$(".time-block").on("click", ".saveBtn", function() {
+    var task = $(this).find(".description").val();
+    console.log(task);
+});
+
+
 //       for (i = 0; i < taskNodeList.length; i++) {
 //           var taskEl = timeblockNodeList[i]; 
 //           console.log(taskEl);
@@ -55,7 +67,7 @@ var taskNodeList = $("textarea");
 // }
 // }
 
-saveTasks();
+//saveTasks();
 
 
 //   var loadTasks = function() {
