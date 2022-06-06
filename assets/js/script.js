@@ -7,7 +7,7 @@ $("#currentDay").html(currentDay);
 var currentHour = moment().format("H");
 console.log(currentHour);
 
-//var tasks = {};
+var tasks = [];
 
 var timeblockNodeList = $(".time-block");
 
@@ -27,17 +27,22 @@ var checkHour = function() {
         };
     };   
 
-    var loadTasks = function() {
-        tasks = JSON.parse(localStorage.getItem("tasks"));
-        if (!tasks) {
-            tasks = [
-                {
-                    task,
-                    time 
-                }
-        ]};
-        console.log(tasks);
-    }    
+    var loadTasks = function() {}
+    //     var timeblockId = $(".time-block").attr("id");
+    //     console.log(timeblockId);
+    //     tasks = JSON.parse(localStorage.getItem("tasks"));
+    //     if (!tasks) {
+    //         tasks = [];
+    //     }
+    //     $.each(tasks, function() {
+    //         if (taskObj.savedTime == timeblockId) {
+    //             $(".description").append(taskObj.savedTask)
+    //         }
+    //     })
+    // }
+        // else if (tasks[taskObj].time) {
+        // console.log(tasks);
+        // };   
 
     // var saveTask = function(event) {
     //     var taskEl = $(timeEl).find("textarea").text().trim();
@@ -58,15 +63,17 @@ setInterval(function () {
       console.log("check");
   }, (1000 * 60) * 3);
 
-var taskNodeList = $("textarea");
+  //select all textareas
+//var taskNodeList = $("textarea");
 
 $(".time-block").on("click", ".saveBtn", function() {
     var task = $(this).parent().find(".description").val().trim();
     var time = $(this).closest(".time-block").attr("id");
-    //$(task).attr("id", );
-    console.log(time);
-    console.log(task);
-    tasks.push(task, time);
+    var taskObj = {
+        savedTask: task,
+        savedTime: time
+    }
+    tasks.push(taskObj);
     localStorage.setItem("tasks", JSON.stringify(tasks));
 });
 
