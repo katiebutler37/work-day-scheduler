@@ -67,12 +67,9 @@ textarea {
   padding-top: 15px;
 }
 
-.saveBtn i:hover {
+.saveBtn:hover > span { 
   font-size: 20px;
   transition: all .3s ease-in-out;
 }
 
-.hide {
-  display: none;
-}
 

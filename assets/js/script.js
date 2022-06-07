@@ -11,13 +11,15 @@ console.log(currentHour);
 var time;
 var task;
 
+//grabs all time blocks
 var timeblockNodeList = $(".time-block");
 
+//checks timeslot relative to current time
 var checkHour = function() {
     // remove any old classes from element
     $(timeEl).find("textarea").removeClass("past present future");
 
-        // apply new class if task is near/over due date
+        // apply new class if task is before/during/after current hour
         if (hour > currentHour) {
             $(timeEl).find("textarea").addClass("future");
         }
@@ -29,6 +31,7 @@ var checkHour = function() {
         };
     };   
 
+    //load tasks from local storage by grabbing key and sending it to unique timeblock id
     var loadTasks = function() {
 
         var task9 = (localStorage.getItem(9));
@@ -41,6 +44,7 @@ var checkHour = function() {
         var task16 = (localStorage.getItem(16));
         var task17 = (localStorage.getItem(17));
     
+        //print value of stored task to correct textarea
         $("#nine").val(task9)
         $("#ten").val(task10)
         $("#eleven").val(task11)
@@ -55,6 +59,7 @@ var checkHour = function() {
 
         loadTasks();
 
+        //loop through timeblocks to check time for all blocks
 for (i = 0; i < timeblockNodeList.length; i++) {
     var hour = i + 9;
     var timeEl = timeblockNodeList[i];
@@ -68,7 +73,9 @@ setInterval(function () {
       console.log("check");
   }, (1000 * 60) * 3);
 
+  //add event listener to save button 
 $(".time-block").on("click", ".saveBtn", function() {
+    //get task inputted and the hour of the edited timeblock and put into localStorage
     var task = $(this).parent().find(".description").val().trim();
     var time = $(this).closest(".time-block").attr("id");
     localStorage.setItem(time, task);
